@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+
+/* Esse programa pede para o usuario escolher a quantidade
+de numeros que ele vai digitar, em seguida, quando começar
+a digitar os numeros, o programa ira verificar o maior 
+numero digitado e quantas vezes esse numero foi digitado */
+
+int main()
+{
+    int qtd, cont = 1, maior = -INFINITY, n;
+
+    printf("digite a quantidade de numeros: ");
+    scanf("%d", &qtd);
+
+    for(int i = 0; i < qtd; i++) //instrução principal O(n)
+    {
+        printf("digite um numero: ");
+        scanf("%d", &n);
+        if(n == maior)
+            cont++;
+        if(n > maior)
+            maior = n;
+    }
+
+    printf("maior numero: %d\n", maior);
+    printf("maior numero foi lido %d vezes.\n", cont);
+
+ /* Esse programa é de complexidade linear, tem apenas
+ um comando for que varia conforme o numero digitado
+ pelo usuario, aumentando linearmente o tempo de execução.
+ Função da complexidade no tempo na notaçao big O: f(n) = O(n). */
+
+    return 0;
+}
