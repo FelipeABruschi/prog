@@ -37,4 +37,25 @@ void inserir_n(Lista* lista, int x)
         if(x == lista->valores[i])
             exit(1);
 
+    int i = lista->n_elementos - 1;
+    while(lista->valores[i] != NULL)
+        i--;
+
+    lista->n_elementos++;
+    lista->valores[lista->n_elementos - 1] = x;
+}
+
+void remove_n(Lista *lista, int x)
+{
+    for(int i = 0; i < lista->n_elementos; i++)
+        if(x == lista->valores[i])
+        {
+            lista->valores[i] = lista->valores[lista->n_elementos - 1];
+            lista->n_elementos--;
+        }
+}
+
+void enfileirar(Fila *fila, int x)
+{
+
 }

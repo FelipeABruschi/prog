@@ -13,10 +13,22 @@ typedef struct
     int n_elementos;
 }Lista;
 
+typedef struct
+{
+    int *valores;
+    int inicio;
+    int fim;
+    int capacidade;
+}Fila;
+
 void cria_lista(Lista *lista, int tam_max);
 void imprime_lista(Lista *lista);
 int busca_linear(Lista *lista, int x);
 void inserir_n(Lista* lista, int x);
+void remove_n(Lista *lista, int x);
+
+void cria_fila(Fila *fila, int capacidade);
+void imprime_fila(Fila *fila);
 
 typedef enum { SUM, SUB } operation_t;
 
