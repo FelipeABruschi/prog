@@ -18,12 +18,28 @@ int main()
 
     inserir_n(&minha_lista, 12);
 
-    imprime_lista(&minha_lista);*/
+    imprime_lista(&minha_lista);
 
     Fila minha_fila;
     cria_fila(&minha_fila, 10);
 
-    imprime_fila(&minha_fila);
+    imprime_fila(&minha_fila);*/
+
+    Pilha minhapilha;
+    cria_pilha(&minhapilha, 12);
+
+    push(&minhapilha, 10);
+    push(&minhapilha, 5);
+    push(&minhapilha, 2);
+
+    imprime_pilha(&minhapilha);
+
+    printf("%d\n", size(&minhapilha));
+
+    pop(&minhapilha);
+    pop(&minhapilha);
+
+    imprime_pilha(&minhapilha);
 
     return 0;
 }

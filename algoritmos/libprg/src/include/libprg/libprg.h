@@ -21,6 +21,13 @@ typedef struct
     int capacidade;
 }Fila;
 
+typedef struct
+{
+    int *valores;
+    int topo;
+    int capacidade;
+}Pilha;
+
 void cria_lista(Lista *lista, int tam_max);
 void imprime_lista(Lista *lista);
 int busca_linear(Lista *lista, int x);
@@ -29,6 +36,13 @@ void remove_n(Lista *lista, int x);
 
 void cria_fila(Fila *fila, int capacidade);
 void imprime_fila(Fila *fila);
+
+void cria_pilha(Pilha *pilha, int capacidade);
+void imprime_pilha(Pilha *pilha);
+void push(Pilha *pilha, int x);
+int pop(Pilha *pilha);
+int size(Pilha *pilha);
+int empty(Pilha *pilha);
 
 typedef enum { SUM, SUB } operation_t;
 
