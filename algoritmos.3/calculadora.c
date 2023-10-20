@@ -7,8 +7,9 @@ int main()
     Pilha pilhacalc;
     cria_pilha(&pilhacalc, 4);
 
-    int x1, x2, x3, x4;
+    int x1, x2, x3, x4, aux1, aux2;
     char operador;
+    int resultado;
 
 
     printf("entre com os valores para calcular:\n");
@@ -18,12 +19,24 @@ int main()
     push(&pilhacalc, x1);
     push(&pilhacalc, x2);
 
+
     printf("digite a operacao desejada: ");
     scanf("%c", &operador);
 
     switch(operador)
     {
-        case '+':
+        case '+': resultado = pop(&pilhacalc) + pop(&pilhacalc);
+            push(&pilhacalc, resultado); break;
+        case '-': aux2 = pop(&pilhacalc);
+            aux1 = pop(&pilhacalc);
+            resultado = aux1 - aux2;
+            push(&pilhacalc, resultado); break;
+        case '*': resultado = pop(&pilhacalc) * pop(&pilhacalc);
+            push(&pilhacalc, resultado); break;
+        case '/': aux2 = pop(&pilhacalc);
+            aux1 = pop(&pilhacalc);
+            resultado = aux1 / aux2;
+            push(&pilhacalc, resultado);
     }
 
 
