@@ -1,1 +1,37 @@
+#include <stdio.h>
 
+void preencher(float *, float);
+
+int main()
+{
+    float vet1[4], vet2[4], vet_resultado[4];
+    float n1, n2;
+
+    printf("digite um valor para o vetor X e para o vetor Y: ");
+    scanf("%f%f", &n1, &n2);
+
+    preencher(vet1, n1);
+    preencher(vet2, n2);
+
+    for(int i = 0; i < 4; i++)
+    {
+        switch(i)
+        {
+            case 0: *(vet_resultado + i) = *(vet1 + i) + *(vet2 + i); break;
+            case 1: *(vet_resultado + i) = *(vet1 + i) - *(vet2 + i); break;
+            case 2: *(vet_resultado + i) = *(vet1 + i) * *(vet2 + i); break;
+            case 3: *(vet_resultado + i) = *(vet1 + i) / *(vet2 + i); break;
+        }
+    }
+
+    for(int i = 0; i < 4; i++)
+        printf("%.2f\n", *(vet_resultado + i));
+
+    return 0;
+}
+
+void preencher(float *vet, float valor)
+{
+    for(int i = 0; i < 4; i++)
+        *(vet + i) = valor;
+}
