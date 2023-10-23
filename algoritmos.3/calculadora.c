@@ -1,44 +1,66 @@
 #include "libprg/libprg.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
 
 int main()
 {
     Pilha pilhacalc;
     cria_pilha(&pilhacalc, 4);
 
-    int x1, x2, x3, x4, aux1, aux2;
-    char operador;
-    int resultado;
+    char entrada[10];
+    int numero, resultado, operando1, operando2;
 
-
-    printf("entre com os valores para calcular:\n");
-    scanf("%d", &x1);
-    scanf("%d", &x2);
-
-    push(&pilhacalc, x1);
-    push(&pilhacalc, x2);
-
-
-    printf("digite a operacao desejada: ");
-    scanf("%c", &operador);
-
-    switch(operador)
+    while (1)
     {
-        case '+': resultado = pop(&pilhacalc) + pop(&pilhacalc);
-            push(&pilhacalc, resultado); break;
-        case '-': aux2 = pop(&pilhacalc);
-            aux1 = pop(&pilhacalc);
-            resultado = aux1 - aux2;
-            push(&pilhacalc, resultado); break;
-        case '*': resultado = pop(&pilhacalc) * pop(&pilhacalc);
-            push(&pilhacalc, resultado); break;
-        case '/': aux2 = pop(&pilhacalc);
-            aux1 = pop(&pilhacalc);
-            resultado = aux1 / aux2;
-            push(&pilhacalc, resultado);
+        imprime_pilha(&pilhacalc);
+
+        printf("digite a operacao desejada: ");
+        scanf("%s", entrada);
+
+        if(isdigit(entrada[0]) != 0)
+        {
+            numero = atoi(entrada);
+            push(&pilhacalc, numero);
+        } else {
+            switch (entrada[0])
+            {
+                case '+':
+                    operando2 = pop(&pilhacalc);
+                    operando1 = pop(&pilhacalc);
+                    resultado = operando1 + operando2;
+                    push(&pilhacalc, resultado);
+                    break;
+
+                case '-':
+                    operando2 = pop(&pilhacalc);
+                    operando1 = pop(&pilhacalc);
+                    resultado = operando1 - operando2;
+                    push(&pilhacalc, resultado);
+                    break;
+
+                case '*':
+                    operando2 = pop(&pilhacalc);
+                    operando1 = pop(&pilhacalc);
+                    resultado = operando1 * operando2;
+                    push(&pilhacalc, resultado);
+                    break;
+
+                case '/':
+                    operando2 = pop(&pilhacalc);
+                    operando1 = pop(&pilhacalc);
+
+                    if (operando2 != 0) {
+                        resultado = operando1 / operando2;
+                        push(&pilhacalc, resultado);
+                    } else
+                        printf("divisao por 0.\n");
+                    break;
+            }
+        }
     }
 
+    imprime_pilha(&pilhacalc);
 
     return 0;
 }
