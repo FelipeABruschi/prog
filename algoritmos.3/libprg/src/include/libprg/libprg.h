@@ -28,6 +28,12 @@ typedef struct
     int capacidade;
 }Pilha;
 
+typedef struct no
+{
+    int dado;
+    struct no *proximo;
+}no_t;
+
 void cria_lista(Lista *lista, int tam_max);
 void imprime_lista(Lista *lista);
 int busca_linear(Lista *lista, int x);
