@@ -1,5 +1,6 @@
 #ifndef LIBPRG_LIBPRG_H
 #define LIBPRG_LIBPRG_H
+#include <stdbool.h>
 
 typedef struct {
     double value;
@@ -32,7 +33,13 @@ typedef struct no
 {
     int dado;
     struct no *proximo;
-}no_t;
+}no;
+
+typedef struct nod {
+    int dado;
+    struct nod *proximo;
+    struct nod *anterior;
+} nod;
 
 void cria_lista(Lista *lista, int tam_max);
 void imprime_lista(Lista *lista);
@@ -50,7 +57,19 @@ int pop(Pilha *pilha);
 int size(Pilha *pilha);
 int empty(Pilha *pilha);
 
-typedef enum { SUM, SUB } operation_t;
+void add(no **inicio, int dado);
+bool remover(no **inicio, int dado);
+void imprimir(no **inicio);
+void destruir(no **inicio);
+int buscarValor(no **inicio, int valor);
+void addord(no **inicio, int dado);
+
+void adddupla(nod **inicio, int dado);
+bool removdupla(nod **inicio, int dado);
+void destroidup(nod **inicio);
+int buscarValorDup(nod **inicio, int valor);
+
+        typedef enum { SUM, SUB } operation_t;
 
 result_t sub(double a, double b);
 result_t sum(double a, double b);

@@ -3,12 +3,38 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void add(no **inicio, int dado)
+void addord(no **inicio, int dado)
 {
     no *novo = (no*) malloc(sizeof(no));
     novo->dado = dado;
+
+    no *atual = *inicio;
+    no *aux = NULL;
+    while(atual != NULL)
+    {
+        if (atual->dado < dado)
+            aux = atual;
+        atual = atual->proximo;
+    }
+
+    if (aux != NULL)
+    {
+        novo->proximo = aux->proximo;
+        aux->proximo = novo;
+        return;
+    }
     novo->proximo = *inicio;
     *inicio = novo;
+}
+
+void imprimirLista(no **inicio)
+{
+    no *atual = *inicio;
+    while(atual != NULL)
+    {
+        printf("%d ", atual->dado);
+        atual = atual->proximo;
+    }
 }
 
 bool remover(no **inicio, int dado)
@@ -23,7 +49,6 @@ bool remover(no **inicio, int dado)
                 *inicio = atual->proximo;
             else
                 anterior->proximo = atual->proximo;
-
             free(atual);
             return true;
         }
@@ -31,16 +56,6 @@ bool remover(no **inicio, int dado)
         atual = atual->proximo;
     }
     return false;
-}
-
-void imprimir(no **inicio)
-{
-    no *atual = *inicio;
-    while(atual != NULL)
-    {
-        printf("%d ", atual->dado);
-        atual = atual->proximo;
-    }
 }
 
 void destruir(no **inicio)
